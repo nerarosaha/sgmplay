@@ -1,17 +1,17 @@
 var SGMCore = {
-	_this:this;
-	blogUrl:'https://sexygirlmedia.blogspot.com/';
-	typeGet:'default';
-	maxGet:10;
-	orderGet:'published';
-	catGet:'';
-	idGet:'';
+	_this:this,
+	blogUrl:'https://sexygirlmedia.blogspot.com/',
+	typeGet:'default',
+	maxGet:10,
+	orderGet:'published',
+	catGet:'',
+	idGet:'',
 	defaultThumb:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
-	imgSize:'/s180';
+	imgSize:'/s180',
 	templateHtml: {
 		idElement:'',
 		htmlElememt:''
-	};
+	},
 	relateSetting:{
 		labels:[],
 		idCur:'0',
@@ -19,7 +19,7 @@ var SGMCore = {
 		maxInLabel:2,
 		max:6,
 		mainLabel:[]
-	};
+	},
 	
 	_ajaxGetJson:function (url, callback){
 		var againWhenErr = 1;
@@ -51,7 +51,7 @@ var SGMCore = {
 					console.log(e);
 			}
 		});	
-	}
+	},
 	
 	getList:function () {
 		var url = _this.blogUrl + 'feed/post/' + typeGet + (_this.catGet != '' ? '/-/'+ _this.catGet : '');
@@ -96,7 +96,7 @@ var SGMCore = {
 				$(_this.templateHtml.idElement).html('<strong>No Result!</strong>');
 			}
 		});
-	}
+	},
 	
 	getOnceById:function(callback){
 		var url = _this.blogUrl + 'feed/post/' + typeGet + '/' + _this.idGet;
@@ -137,15 +137,15 @@ var SGMCore = {
 				callback('');
 			}
 		});
-	}
+	},
 	
 	getOnceByUrl:function(){
 		
-	}
+	},
 	
 	_changeImageSize:function(image_url){
 		return image_url.replace(/\/s[0-9]+(\-c)?/g, _this.imgSize);
-	}
+	},
 	
 	recentPost:function() {
 		var url = _this.blogUrl + 'feed/post/' + typeGet + (_this.catGet != '' ? '/-/'+ _this.catGet : '');
@@ -192,7 +192,7 @@ var SGMCore = {
 				$(_this.templateHtml.idElement).html('<strong>No Result!</strong>');
 			}
 		});
-	}
+	},
 	
 	relatedPost:function(num) {
 		var url = _this.blogUrl + '/feeds/posts/default';
