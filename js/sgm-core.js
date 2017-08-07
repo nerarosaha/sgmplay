@@ -127,14 +127,14 @@ var SGMCore = function(){
 					result.url = urlPost;
 					result.id = idPost;
 					
-					resultHtml += _this.templateHtml.htmlElement.create(result);
+					resultHtml += _this.options.templateHtml.htmlElement.create(result);
 				}
 				
-				_this.templateHtml.idElement.find('ul.phim-hot').html(resultHtml);
+				_this.options.templateHtml.idElement.find('ul.phim-hot').html(resultHtml);
 				
-				_slider('#' + _this.templateHtml.idElement.attr('id'));
+				_slider('#' + _this.options.templateHtml.idElement.attr('id'));
 			}else{
-				$(_this.templateHtml.idElement).html('<strong>No Result!</strong>');
+				$(_this.options.templateHtml.idElement).html('<strong>No Result!</strong>');
 			}
 		});
 	}
