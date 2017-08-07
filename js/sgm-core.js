@@ -17,17 +17,17 @@ var SGMCore = function(){
 	var _this = this;
 	_this.options = {
 		blogUrl:'https://sexygirlmedia.blogspot.com/',
-		typeGet : 'default';
-		maxGet : 10;
-		orderGet : 'published';
-		catGet : '';
-		idGet : '';
-		defaultThumb : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
-		imgSize = '/s180';
+		typeGet : 'default',
+		maxGet : 10,
+		orderGet : 'published',
+		catGet : '',
+		idGet : '',
+		defaultThumb : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==',
+		imgSize = '/s180',
 		templateHtml : {
 			idElement : '',
 			htmlElememt : ''
-		};
+		},
 		relateSetting : {
 			labels : [],
 			idCur : '0',
@@ -35,7 +35,7 @@ var SGMCore = function(){
 			maxInLabel : 2,
 			max : 6,
 			mainLabel : []
-		};
+		},
 	};	
 	
 	
