@@ -17,7 +17,7 @@ var SGMCore = function(){
 	var _this = this;
 	var defaults = {
 		blogUrl:'https://sexygirlmedia.blogspot.com/',
-		typeGet : 'default',_this.
+		typeGet : 'default',
 		maxGet : 10,
 		orderGet : 'published',
 		catGet : '',
