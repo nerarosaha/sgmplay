@@ -93,7 +93,7 @@ var SGMCore = function(options){
 	}
 	
 	_this.getList = function () {
-		var url = options.blogUrl + 'feeds/posts/' + options.typeGet + (_this.options.catGet != '' ? '/-/'+ options.catGet : '');
+		var url = options.blogUrl + 'feeds/posts/' + options.typeGet + (options.catGet != '' ? '/-/'+ options.catGet : '');
 		
 		_ajaxGetJson(url, function(data){
 			var title 		= '',
