@@ -78,7 +78,7 @@ var SGMCore = function(){
 			min = 5;
 		}
 
-		$(idE).slider({
+		$(idE +' .item_slider').slider({
 			minSlides: min,
 			indicator: $(idE +' .list-inline'),
 			prevText: '<a class="col-xs-0 col-sm-1 bx-controls-direction bx-next" rel="next" href="javascript:void(0)"><img class="img-reponsive" src="https://fptplay.net/img/icon_right.png" alt=""/></a>',
