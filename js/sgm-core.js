@@ -35,7 +35,7 @@ var SGMCore = function(){
 		
 		$.ajax({
 			url: url,
-			type: get,
+			type: 'get',
 			beforeSend : function(){
 				againWhenErr++;
 			},
