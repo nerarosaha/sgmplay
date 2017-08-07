@@ -312,3 +312,5 @@ var Strings = {
 String.prototype.create = function(o) {
     return Strings.create(this, o);
 }
+
+var sgm_core = new SGMCore();
