@@ -15,7 +15,7 @@ String.prototype.create = function(o) {
 
 var SGMCore = function(){
 	var _this = this;
-	_this.options = {
+	_this.defaults = {
 		blogUrl:'https://sexygirlmedia.blogspot.com/',
 		typeGet : 'default',
 		maxGet : 10,
@@ -38,6 +38,9 @@ var SGMCore = function(){
 		},
 	};	
 	
+	_this.customOptions = {};
+	
+	_this.options = $.extend(defaults, _this.customOptions);
 	
 	var _ajaxGetJson = function (url, callback){
 		var againWhenErr = 1;
