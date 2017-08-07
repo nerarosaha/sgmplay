@@ -86,7 +86,7 @@ var SGMCore = function(){
 		});           
 	}
 	
-	_this.getList = function (fnEffect) {
+	_this.getList = function () {
 		var url = _this.blogUrl + 'feeds/posts/' + _this.typeGet + (_this.catGet != '' ? '/-/'+ _this.catGet : '');
 		
 		_ajaxGetJson(url, function(data){
@@ -124,9 +124,9 @@ var SGMCore = function(){
 					resultHtml += _this.templateHtml.htmlElement.create(result);
 				}
 				
-				$(_this.templateHtml.idElement).html(resultHtml);
+				_this.templateHtml.idElement.children('ul.phim-hot').html(resultHtml);
 				
-				_slider(_this.templateHtml.idElement);
+				_slider('#' + _this.templateHtml.idElement.attr('id'));
 			}else{
 				$(_this.templateHtml.idElement).html('<strong>No Result!</strong>');
 			}
@@ -332,6 +332,3 @@ var SGMCore = function(){
 		
 	}
 }
-
-
-var sgm_core = new SGMCore();
