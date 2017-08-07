@@ -54,7 +54,7 @@ var SGMCore = function(){
 	}
 	
 	_this.getList = function () {
-		var url = _this.blogUrl + 'feed/post/' + typeGet + (_this.catGet != '' ? '/-/'+ _this.catGet : '');
+		var url = _this.blogUrl + 'feed/post/' + _this.typeGet + (_this.catGet != '' ? '/-/'+ _this.catGet : '');
 		
 		_ajaxGetJson(url, function(data){
 			var title 		= '',
