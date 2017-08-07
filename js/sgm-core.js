@@ -69,18 +69,21 @@ var SGMCore = function(){
 	}
 	
 	var _slider = function(idE){
+		
+		$(idE + " img.lazy").lazyload();
+		
 		var w = $(document).width(); 
-			var min = 5;
-			if(w > 1366){
-				min = 5;
-			}
+		var min = 5;
+		if(w > 1366){
+			min = 5;
+		}
 
-			$(idE).slider({
-				minSlides: min,
-				indicator: $(idE +' .list-inline'),
-				prevText: '<a class="col-xs-0 col-sm-1 bx-controls-direction bx-next" rel="next" href="javascript:void(0)"><img class="img-reponsive" src="https://fptplay.net/img/icon_right.png" alt=""/></a>',
-				nextText: '<a class="col-xs-0 col-sm-1 bx-controls-direction bx-prev" rel="prev" href="javascript:void(0)"><img class="img-reponsive" src="https://fptplay.net/img/icon_left.png" alt=""/></a>',
-			});           
+		$(idE).slider({
+			minSlides: min,
+			indicator: $(idE +' .list-inline'),
+			prevText: '<a class="col-xs-0 col-sm-1 bx-controls-direction bx-next" rel="next" href="javascript:void(0)"><img class="img-reponsive" src="https://fptplay.net/img/icon_right.png" alt=""/></a>',
+			nextText: '<a class="col-xs-0 col-sm-1 bx-controls-direction bx-prev" rel="prev" href="javascript:void(0)"><img class="img-reponsive" src="https://fptplay.net/img/icon_left.png" alt=""/></a>',
+		});           
 	}
 	
 	_this.getList = function (fnEffect) {
