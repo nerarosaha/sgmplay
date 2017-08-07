@@ -42,6 +42,8 @@ var SGMCore = function(){
 	
 	_this.options = $.extend(defaults, _this.customOptions);
 	
+	console.log(_this.options);
+	
 	var _ajaxGetJson = function (url, callback){
 		var againWhenErr = 1;
 		var dt = {
