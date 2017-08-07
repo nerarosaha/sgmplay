@@ -89,7 +89,7 @@ var SGMCore = function(){
 						}
 					}
 					
-					titlePost = entry[i].title.$t;
+					title = entry[i].title.$t;
 					idPost = entry[i].id.$t.split('post-')[1];
 					
 					if("media$thumbnail" in entry[i]){
