@@ -124,7 +124,7 @@ var SGMCore = function(){
 					resultHtml += _this.templateHtml.htmlElement.create(result);
 				}
 				
-				_this.templateHtml.idElement.children('ul.phim-hot').html(resultHtml);
+				_this.templateHtml.idElement.find('ul.phim-hot').html(resultHtml);
 				
 				_slider('#' + _this.templateHtml.idElement.attr('id'));
 			}else{
