@@ -1,3 +1,18 @@
+var Strings = {
+	create : (function() {
+		var regexp = /{([^{]+)}/g;
+
+		return function(str, o) {
+			 return str.replace(regexp, function(ignore, key){
+				   return (key = o[key]) == null ? '' : key;
+			 });
+		}
+	})()
+};
+String.prototype.create = function(o) {
+    return Strings.create(this, o);
+}
+
 var SGMCore = function(){
 	var _this = this;
 	_this.blogUrl = 'https://sexygirlmedia.blogspot.com/';
@@ -298,19 +313,5 @@ var SGMCore = function(){
 	}
 }
 
-var Strings = {
-	create : (function() {
-		var regexp = /{([^{]+)}/g;
-
-		return function(str, o) {
-			 return str.replace(regexp, function(ignore, key){
-				   return (key = o[key]) == null ? '' : key;
-			 });
-		}
-	})()
-};
-String.prototype.create = function(o) {
-    return Strings.create(this, o);
-}
 
 var sgm_core = new SGMCore();
