@@ -1,18 +1,18 @@
 var SGMCore = function(){
 	var _this = this;
-	var _this.blogUrl = 'https://sexygirlmedia.blogspot.com/';
-	var _this.typeGet = 'default';
-	var _this.maxGet = 10;
-	var _this.orderGet = 'published';
-	var _this.catGet = '';
-	var _this.idGet = '';
-	var _this.defaultThumb = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
-	var _this.imgSize = '/s180';
-	var _this.templateHtml = {
+	_this.blogUrl = 'https://sexygirlmedia.blogspot.com/';
+	_this.typeGet = 'default';
+	_this.maxGet = 10;
+	_this.orderGet = 'published';
+	_this.catGet = '';
+	_this.idGet = '';
+	_this.defaultThumb = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
+	_this.imgSize = '/s180';
+	_this.templateHtml = {
 		idElement : '',
 		htmlElememt : ''
 	};
-	var _this.relateSetting = {
+	_this.relateSetting = {
 		labels : [],
 		idCur : '0',
 		maxSearched : 12,
