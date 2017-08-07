@@ -68,7 +68,22 @@ var SGMCore = function(){
 		});	
 	}
 	
-	_this.getList = function () {
+	var _slider = function(idE){
+		var w = $(document).width(); 
+			var min = 5;
+			if(w > 1366){
+				min = 5;
+			}
+
+			$(idE).slider({
+				minSlides: min,
+				indicator: $(idE +' .list-inline'),
+				prevText: '<a class="col-xs-0 col-sm-1 bx-controls-direction bx-next" rel="next" href="javascript:void(0)"><img class="img-reponsive" src="https://fptplay.net/img/icon_right.png" alt=""/></a>',
+				nextText: '<a class="col-xs-0 col-sm-1 bx-controls-direction bx-prev" rel="prev" href="javascript:void(0)"><img class="img-reponsive" src="https://fptplay.net/img/icon_left.png" alt=""/></a>',
+			});           
+	}
+	
+	_this.getList = function (fnEffect) {
 		var url = _this.blogUrl + 'feeds/posts/' + _this.typeGet + (_this.catGet != '' ? '/-/'+ _this.catGet : '');
 		
 		_ajaxGetJson(url, function(data){
@@ -107,6 +122,8 @@ var SGMCore = function(){
 				}
 				
 				$(_this.templateHtml.idElement).html(resultHtml);
+				
+				_this._slider(_this.templateHtml.idElement);
 			}else{
 				$(_this.templateHtml.idElement).html('<strong>No Result!</strong>');
 			}
