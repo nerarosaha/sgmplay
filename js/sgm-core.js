@@ -123,7 +123,7 @@ var SGMCore = function(){
 				
 				$(_this.templateHtml.idElement).html(resultHtml);
 				
-				_this._slider(_this.templateHtml.idElement);
+				_slider(_this.templateHtml.idElement);
 			}else{
 				$(_this.templateHtml.idElement).html('<strong>No Result!</strong>');
 			}
