@@ -15,9 +15,9 @@ String.prototype.create = function(o) {
 
 var SGMCore = function(){
 	var _this = this;
-	_this.defaults = {
+	var defaults = {
 		blogUrl:'https://sexygirlmedia.blogspot.com/',
-		typeGet : 'default',
+		typeGet : 'default',_this.
 		maxGet : 10,
 		orderGet : 'published',
 		catGet : '',
@@ -49,7 +49,7 @@ var SGMCore = function(){
 			"orderby" : _this.options.orderGet,
 			"max-results" : _this.options.maxGet
 		}
-		if(_this.idGet != '')
+		if(_this.options.idGet != '')
 			dt = {
 				"alt": "json-in-script"
 			}
