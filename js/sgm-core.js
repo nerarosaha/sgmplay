@@ -1,27 +1,27 @@
-var SGMCore = {
-	_this:this,
-	blogUrl:'https://sexygirlmedia.blogspot.com/',
-	typeGet:'default',
-	maxGet:10,
-	orderGet:'published',
-	catGet:'',
-	idGet:'',
-	defaultThumb:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
-	imgSize:'/s180',
-	templateHtml: {
-		idElement:'',
-		htmlElememt:''
-	},
-	relateSetting:{
-		labels:[],
-		idCur:'0',
-		maxSearched:12,
-		maxInLabel:2,
-		max:6,
-		mainLabel:[]
-	},
+var SGMCore = function(){
+	var _this = this;
+	var _this.blogUrl = 'https://sexygirlmedia.blogspot.com/';
+	var _this.typeGet = 'default';
+	var _this.maxGet = 10;
+	var _this.orderGet = 'published';
+	var _this.catGet = '';
+	var _this.idGet = '';
+	var _this.defaultThumb = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
+	var _this.imgSize = '/s180';
+	var _this.templateHtml = {
+		idElement : '',
+		htmlElememt : ''
+	};
+	var _this.relateSetting = {
+		labels : [],
+		idCur : '0',
+		maxSearched : 12,
+		maxInLabel : 2,
+		max : 6,
+		mainLabel : []
+	};
 	
-	_ajaxGetJson:function (url, callback){
+	var _ajaxGetJson = function (url, callback){
 		var againWhenErr = 1;
 		var dt = {
 			"alt": "json-in-script",
@@ -46,17 +46,17 @@ var SGMCore = {
 			},
 			error : function(e){
 				if(againWhenErr < 3)
-					_this._ajaxGetJson(url, callback);
+					_ajaxGetJson(url, callback);
 				else
 					console.log(e);
 			}
 		});	
-	},
+	}
 	
-	getList:function () {
+	_this.getList = function () {
 		var url = _this.blogUrl + 'feed/post/' + typeGet + (_this.catGet != '' ? '/-/'+ _this.catGet : '');
 		
-		_this._ajaxGetJson(url, function(data){
+		_ajaxGetJson(url, function(data){
 			var title 		= '',
 				thumbnail 	= '',
 				urlPost 	= '',
@@ -96,11 +96,11 @@ var SGMCore = {
 				$(_this.templateHtml.idElement).html('<strong>No Result!</strong>');
 			}
 		});
-	},
+	}
 	
-	getOnceById:function(callback){
+	_this.getOnceById = function(callback){
 		var url = _this.blogUrl + 'feed/post/' + typeGet + '/' + _this.idGet;
-		_this._ajaxGetJson(url, function(data){
+		_ajaxGetJson(url, function(data){
 			var title 		= '',
 				thumbnail 	= '',
 				urlPost 	= '';
@@ -121,7 +121,7 @@ var SGMCore = {
 				var content = "content" in entry ? entry.content.$t : "";
 				
 				if("media$thumbnail" in entry){
-					thumbnail = _this._changeImageSize(entry.media$thumbnail.url);
+					thumbnail = _changeImageSize(entry.media$thumbnail.url);
 				}else{
 					thumbnail = _this.defaultThumb;
 				}
@@ -137,20 +137,20 @@ var SGMCore = {
 				callback('');
 			}
 		});
-	},
+	}
 	
-	getOnceByUrl:function(){
+	_this.getOnceByUrl = function(){
 		
-	},
+	}
 	
-	_changeImageSize:function(image_url){
+	var _changeImageSize = function(image_url){
 		return image_url.replace(/\/s[0-9]+(\-c)?/g, _this.imgSize);
-	},
+	}
 	
-	recentPost:function() {
+	_this.recentPost = function() {
 		var url = _this.blogUrl + 'feed/post/' + typeGet + (_this.catGet != '' ? '/-/'+ _this.catGet : '');
 		
-		_this._ajaxGetJson(url, function(data){
+		_ajaxGetJson(url, function(data){
 			var title 		= '',
 				thumbnail 	= '',
 				urlPost 	= '',
@@ -172,7 +172,7 @@ var SGMCore = {
 					idPost = entry[i].id.$t.split('post-')[1];
 					
 					if("media$thumbnail" in entry[i]){
-						thumbnail = _this._changeImageSize(entry[i].media$thumbnail.url);
+						thumbnail = _changeImageSize(entry[i].media$thumbnail.url);
 					}else{
 						thumbnail = _this.defaultThumb;
 					}
@@ -192,9 +192,9 @@ var SGMCore = {
 				$(_this.templateHtml.idElement).html('<strong>No Result!</strong>');
 			}
 		});
-	},
+	}
 	
-	relatedPost:function(num) {
+	_this.relatedPost = function(num) {
 		var url = _this.blogUrl + '/feeds/posts/default';
 		
 		(function init(num){
@@ -313,3 +313,4 @@ String.prototype.create = function(o) {
     return Strings.create(this, o);
 }
 
+var sgm_core = new SGMCore();
