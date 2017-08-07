@@ -23,7 +23,7 @@ var SGMCore = function(){
 		catGet : '',
 		idGet : '',
 		defaultThumb : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==',
-		imgSize = '/s180',
+		imgSize : '/s180',
 		templateHtml : {
 			idElement : '',
 			htmlElememt : ''
