@@ -15,33 +15,36 @@ String.prototype.create = function(o) {
 
 var SGMCore = function(){
 	var _this = this;
-	_this.blogUrl = 'https://sexygirlmedia.blogspot.com/';
-	_this.typeGet = 'default';
-	_this.maxGet = 10;
-	_this.orderGet = 'published';
-	_this.catGet = '';
-	_this.idGet = '';
-	_this.defaultThumb = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
-	_this.imgSize = '/s180';
-	_this.templateHtml = {
-		idElement : '',
-		htmlElememt : ''
-	};
-	_this.relateSetting = {
-		labels : [],
-		idCur : '0',
-		maxSearched : 12,
-		maxInLabel : 2,
-		max : 6,
-		mainLabel : []
-	};
+	_this.options = {
+		blogUrl:'https://sexygirlmedia.blogspot.com/',
+		typeGet : 'default';
+		maxGet : 10;
+		orderGet : 'published';
+		catGet : '';
+		idGet : '';
+		defaultThumb : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
+		imgSize = '/s180';
+		templateHtml : {
+			idElement : '',
+			htmlElememt : ''
+		};
+		relateSetting : {
+			labels : [],
+			idCur : '0',
+			maxSearched : 12,
+			maxInLabel : 2,
+			max : 6,
+			mainLabel : []
+		};
+	};	
+	
 	
 	var _ajaxGetJson = function (url, callback){
 		var againWhenErr = 1;
 		var dt = {
 			"alt": "json-in-script",
-			"orderby" : _this.orderGet,
-			"max-results" : _this.maxGet
+			"orderby" : _this.options.orderGet,
+			"max-results" : _this.options.maxGet
 		}
 		if(_this.idGet != '')
 			dt = {
@@ -87,7 +90,7 @@ var SGMCore = function(){
 	}
 	
 	_this.getList = function () {
-		var url = _this.blogUrl + 'feeds/posts/' + _this.typeGet + (_this.catGet != '' ? '/-/'+ _this.catGet : '');
+		var url = _this.options.blogUrl + 'feeds/posts/' + _this.options.typeGet + (_this.options.catGet != '' ? '/-/'+ _this.options.catGet : '');
 		
 		_ajaxGetJson(url, function(data){
 			var title 		= '',
@@ -113,7 +116,7 @@ var SGMCore = function(){
 					if("media$thumbnail" in entry[i]){
 						thumbnail = _changeImageSize(entry[i].media$thumbnail.url);
 					}else{
-						thumbnail = _this.defaultThumb;
+						thumbnail = _this.options.defaultThumb;
 					}
 					
 					result.title = title;
@@ -134,7 +137,7 @@ var SGMCore = function(){
 	}
 	
 	_this.getOnceById = function(callback){
-		var url = _this.blogUrl + 'feeds/posts/' + typeGet + '/' + _this.idGet;
+		var url = _this.options.blogUrl + 'feeds/posts/' + _this.options.typeGet + '/' + _this.options.idGet;
 		_ajaxGetJson(url, function(data){
 			var title 		= '',
 				thumbnail 	= '',
@@ -179,11 +182,11 @@ var SGMCore = function(){
 	}
 	
 	var _changeImageSize = function(image_url){
-		return image_url.replace(/\/s[0-9]+(\-c)?/g, _this.imgSize);
+		return image_url.replace(/\/s[0-9]+(\-c)?/g, _this.options.imgSize);
 	}
 	
 	_this.recentPost = function() {
-		var url = _this.blogUrl + 'feeds/posts/' + typeGet + (_this.catGet != '' ? '/-/'+ _this.catGet : '');
+		var url = _this.options.blogUrl + 'feeds/posts/' + _this.options.typeGet + (_this.options.catGet != '' ? '/-/'+ _this.options.catGet : '');
 		
 		_ajaxGetJson(url, function(data){
 			var title 		= '',
@@ -209,7 +212,7 @@ var SGMCore = function(){
 					if("media$thumbnail" in entry[i]){
 						thumbnail = _changeImageSize(entry[i].media$thumbnail.url);
 					}else{
-						thumbnail = _this.defaultThumb;
+						thumbnail = _this.options.defaultThumb;
 					}
 					
 					result.title = title;
@@ -222,51 +225,51 @@ var SGMCore = function(){
 				
 				
 				
-				$(_this.templateHtml.idElement).html(resultHtml);
+				$(_this.options.templateHtml.idElement).html(resultHtml);
 			}else{
-				$(_this.templateHtml.idElement).html('<strong>No Result!</strong>');
+				$(_this.options.templateHtml.idElement).html('<strong>No Result!</strong>');
 			}
 		});
 	}
 	
 	_this.relatedPost = function(num) {
-		var url = _this.blogUrl + '/feeds/posts/default';
+		var url = _this.options.blogUrl + '/feeds/posts/default';
 		
 		(function init(num){
 			if(num === undefined || num === null) num = 0;
-			if(_this.relateSetting.labels.length == 1)
-				url = _this.blogUrl + '/feeds/posts/summary/-/' + _this.relateSetting.labels[0];
+			if(_this.options.relateSetting.labels.length == 1)
+				url = _this.options.blogUrl + '/feeds/posts/summary/-/' + _this.options.relateSetting.labels[0];
 			else{
-				if(_this.relateSetting.mainLabel.length > 0)
-				for(var i = 0,length = _this.relateSetting.mainLabel.length; i < length; i++){
-					if($.inArray(_this.relateSetting.mainLabel[i], _this.relateSetting.labels) !== -1){
-						if(_this.relateSetting.mainLabel[i] !== _this.relateSetting.labels[num])
-							url = _this.blogUrl + '/feeds/posts/summary/-/' + _this.relateSetting.mainLabel[i] + '/' + _this.relateSetting.labels[num];
+				if(_this.options.relateSetting.mainLabel.length > 0)
+				for(var i = 0,length = _this.options.relateSetting.mainLabel.length; i < length; i++){
+					if($.inArray(_this.options.relateSetting.mainLabel[i], _this.options.relateSetting.labels) !== -1){
+						if(_this.options.relateSetting.mainLabel[i] !== _this.options.relateSetting.labels[num])
+							url = _this.options.blogUrl + '/feeds/posts/summary/-/' + _this.options.relateSetting.mainLabel[i] + '/' + _this.options.relateSetting.labels[num];
 						else
-							url = _this.blogUrl + '/feeds/posts/summary/-/' + _this.relateSetting.mainLabel[i];
+							url = _this.options.blogUrl + '/feeds/posts/summary/-/' + _this.options.relateSetting.mainLabel[i];
 					break;
 					}
 				}
 				else
-					url = _this.blogUrl + '/feeds/posts/summary/-/' + _this.relateSetting.labels[num];
+					url = _this.options.blogUrl + '/feeds/posts/summary/-/' + _this.options.relateSetting.labels[num];
 			}
 			
 			var htmlEmbed = '';
 			var exitsPost = [];
 			var result = {};
-			$(_this.templateHtml.idElement + ' .related-item').each(function() {
+			$(_this.options.templateHtml.idElement + ' .related-item').each(function() {
 				exitsPost.push($(this).attr('id'))
 			});
-			if(exitsPost.length <= _this.relateSetting.max - _this.relateSetting.maxInLabel){
+			if(exitsPost.length <= _this.options.relateSetting.max - _this.options.relateSetting.maxInLabel){
 				$.ajax({
 					url: url,
 					data: {
-						"max-results": _this.relateSetting.maxSearched,
+						"max-results": _this.options.relateSetting.maxSearched,
 						alt: "json-in-script"
 					},
 					dataType: "jsonp",
 					beforeSend: function(){
-						if(num < _this.relateSetting.labels.length)
+						if(num < _this.options.relateSetting.labels.length)
 							num++;
 					},
 					success: function(e) {
@@ -281,7 +284,7 @@ var SGMCore = function(){
 							}
 							
 							for(var f in entry) {
-								if(entry[f].id.$t.split('post-')[1] == _this.relateSetting.idCur) {
+								if(entry[f].id.$t.split('post-')[1] == _this.options.relateSetting.idCur) {
 									entry.splice(f, 1);
 									break;
 								}
@@ -304,9 +307,9 @@ var SGMCore = function(){
 									}
 									var thumb;
 									if (entry[t].media$thumbnail !== undefined) {
-										thumb = entry[t].media$thumbnail.url.split(/s72-c/).join(_this.imgSize);
+										thumb = entry[t].media$thumbnail.url.split(/s72-c/).join(_this.options.imgSize);
 									} else {
-										thumb = _this.defaultThumb;
+										thumb = _this.options.defaultThumb;
 									}
 									
 									result.title = entry[t].title.$t.trim();
@@ -314,15 +317,15 @@ var SGMCore = function(){
 									result.url = urlP;
 									result.id = entry[t].id.$t.split('post-')[1];
 									
-									htmlEmbed += '<div id="'+ result.id +'" class="related-item">' + _this.templateHtml.htmlElement.create(result) + '</div>';
+									htmlEmbed += '<div id="'+ result.id +'" class="related-item">' + _this.options.templateHtml.htmlElement.create(result) + '</div>';
 								});
 								
-								$(_this.templateHtml.idElement).append(htmlEmbed);
+								$(_this.options.templateHtml.idElement).append(htmlEmbed);
 							}
 						}
 					}
 				}).always(function(){
-					if(num < _this.relateSetting.labels.length)
+					if(num < _this.options.relateSetting.labels.length)
 						init(num);
 				})
 			}else{
