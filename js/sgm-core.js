@@ -13,7 +13,7 @@ String.prototype.create = function(o) {
     return Strings.create(this, o);
 }
 
-var SGMCore = function(){
+var SGMCore = function(options){
 	var _this = this;
 	var defaults = {
 		blogUrl:'https://sexygirlmedia.blogspot.com/',
@@ -38,20 +38,18 @@ var SGMCore = function(){
 		},
 	};	
 	
-	_this.customOptions = {};
+	options = $.extend({}, defaults, options);
 	
-	_this.options = $.extend(defaults, _this.customOptions);
-	
-	console.log(_this.options);
+	console.log(options);
 	
 	var _ajaxGetJson = function (url, callback){
 		var againWhenErr = 1;
 		var dt = {
 			"alt": "json-in-script",
-			"orderby" : _this.options.orderGet,
-			"max-results" : _this.options.maxGet
+			"orderby" : options.orderGet,
+			"max-results" : options.maxGet
 		}
-		if(_this.options.idGet != '')
+		if(options.idGet != '')
 			dt = {
 				"alt": "json-in-script"
 			}
@@ -95,7 +93,7 @@ var SGMCore = function(){
 	}
 	
 	_this.getList = function () {
-		var url = _this.options.blogUrl + 'feeds/posts/' + _this.options.typeGet + (_this.options.catGet != '' ? '/-/'+ _this.options.catGet : '');
+		var url = options.blogUrl + 'feeds/posts/' + options.typeGet + (_this.options.catGet != '' ? '/-/'+ options.catGet : '');
 		
 		_ajaxGetJson(url, function(data){
 			var title 		= '',
@@ -121,7 +119,7 @@ var SGMCore = function(){
 					if("media$thumbnail" in entry[i]){
 						thumbnail = _changeImageSize(entry[i].media$thumbnail.url);
 					}else{
-						thumbnail = _this.options.defaultThumb;
+						thumbnail = options.defaultThumb;
 					}
 					
 					result.title = title;
@@ -129,20 +127,20 @@ var SGMCore = function(){
 					result.url = urlPost;
 					result.id = idPost;
 					
-					resultHtml += _this.options.templateHtml.htmlElement.create(result);
+					resultHtml += options.templateHtml.htmlElement.create(result);
 				}
 				
-				_this.options.templateHtml.idElement.find('ul.phim-hot').html(resultHtml);
+				options.templateHtml.idElement.find('ul.phim-hot').html(resultHtml);
 				
-				_slider('#' + _this.options.templateHtml.idElement.attr('id'));
+				_slider('#' + options.templateHtml.idElement.attr('id'));
 			}else{
-				$(_this.options.templateHtml.idElement).html('<strong>No Result!</strong>');
+				$(options.templateHtml.idElement).html('<strong>No Result!</strong>');
 			}
 		});
 	}
 	
 	_this.getOnceById = function(callback){
-		var url = _this.options.blogUrl + 'feeds/posts/' + _this.options.typeGet + '/' + _this.options.idGet;
+		var url = options.blogUrl + 'feeds/posts/' + options.typeGet + '/' + options.idGet;
 		_ajaxGetJson(url, function(data){
 			var title 		= '',
 				thumbnail 	= '',
@@ -187,11 +185,11 @@ var SGMCore = function(){
 	}
 	
 	var _changeImageSize = function(image_url){
-		return image_url.replace(/\/s[0-9]+(\-c)?/g, _this.options.imgSize);
+		return image_url.replace(/\/s[0-9]+(\-c)?/g, options.imgSize);
 	}
 	
 	_this.recentPost = function() {
-		var url = _this.options.blogUrl + 'feeds/posts/' + _this.options.typeGet + (_this.options.catGet != '' ? '/-/'+ _this.options.catGet : '');
+		var url = options.blogUrl + 'feeds/posts/' + options.typeGet + (options.catGet != '' ? '/-/'+ options.catGet : '');
 		
 		_ajaxGetJson(url, function(data){
 			var title 		= '',
@@ -217,7 +215,7 @@ var SGMCore = function(){
 					if("media$thumbnail" in entry[i]){
 						thumbnail = _changeImageSize(entry[i].media$thumbnail.url);
 					}else{
-						thumbnail = _this.options.defaultThumb;
+						thumbnail = options.defaultThumb;
 					}
 					
 					result.title = title;
@@ -230,51 +228,51 @@ var SGMCore = function(){
 				
 				
 				
-				$(_this.options.templateHtml.idElement).html(resultHtml);
+				$(options.templateHtml.idElement).html(resultHtml);
 			}else{
-				$(_this.options.templateHtml.idElement).html('<strong>No Result!</strong>');
+				$(options.templateHtml.idElement).html('<strong>No Result!</strong>');
 			}
 		});
 	}
 	
 	_this.relatedPost = function(num) {
-		var url = _this.options.blogUrl + '/feeds/posts/default';
+		var url = options.blogUrl + '/feeds/posts/default';
 		
 		(function init(num){
 			if(num === undefined || num === null) num = 0;
-			if(_this.options.relateSetting.labels.length == 1)
-				url = _this.options.blogUrl + '/feeds/posts/summary/-/' + _this.options.relateSetting.labels[0];
+			if(options.relateSetting.labels.length == 1)
+				url = options.blogUrl + '/feeds/posts/summary/-/' + options.relateSetting.labels[0];
 			else{
-				if(_this.options.relateSetting.mainLabel.length > 0)
-				for(var i = 0,length = _this.options.relateSetting.mainLabel.length; i < length; i++){
-					if($.inArray(_this.options.relateSetting.mainLabel[i], _this.options.relateSetting.labels) !== -1){
-						if(_this.options.relateSetting.mainLabel[i] !== _this.options.relateSetting.labels[num])
-							url = _this.options.blogUrl + '/feeds/posts/summary/-/' + _this.options.relateSetting.mainLabel[i] + '/' + _this.options.relateSetting.labels[num];
+				if(options.relateSetting.mainLabel.length > 0)
+				for(var i = 0,length = options.relateSetting.mainLabel.length; i < length; i++){
+					if($.inArray(options.relateSetting.mainLabel[i], options.relateSetting.labels) !== -1){
+						if(options.relateSetting.mainLabel[i] !== options.relateSetting.labels[num])
+							url = options.blogUrl + '/feeds/posts/summary/-/' + options.relateSetting.mainLabel[i] + '/' + options.relateSetting.labels[num];
 						else
-							url = _this.options.blogUrl + '/feeds/posts/summary/-/' + _this.options.relateSetting.mainLabel[i];
+							url = options.blogUrl + '/feeds/posts/summary/-/' + options.relateSetting.mainLabel[i];
 					break;
 					}
 				}
 				else
-					url = _this.options.blogUrl + '/feeds/posts/summary/-/' + _this.options.relateSetting.labels[num];
+					url = options.blogUrl + '/feeds/posts/summary/-/' + options.relateSetting.labels[num];
 			}
 			
 			var htmlEmbed = '';
 			var exitsPost = [];
 			var result = {};
-			$(_this.options.templateHtml.idElement + ' .related-item').each(function() {
+			$(options.templateHtml.idElement + ' .related-item').each(function() {
 				exitsPost.push($(this).attr('id'))
 			});
-			if(exitsPost.length <= _this.options.relateSetting.max - _this.options.relateSetting.maxInLabel){
+			if(exitsPost.length <= options.relateSetting.max - options.relateSetting.maxInLabel){
 				$.ajax({
 					url: url,
 					data: {
-						"max-results": _this.options.relateSetting.maxSearched,
+						"max-results": options.relateSetting.maxSearched,
 						alt: "json-in-script"
 					},
 					dataType: "jsonp",
 					beforeSend: function(){
-						if(num < _this.options.relateSetting.labels.length)
+						if(num < options.relateSetting.labels.length)
 							num++;
 					},
 					success: function(e) {
@@ -289,7 +287,7 @@ var SGMCore = function(){
 							}
 							
 							for(var f in entry) {
-								if(entry[f].id.$t.split('post-')[1] == _this.options.relateSetting.idCur) {
+								if(entry[f].id.$t.split('post-')[1] == options.relateSetting.idCur) {
 									entry.splice(f, 1);
 									break;
 								}
@@ -312,9 +310,9 @@ var SGMCore = function(){
 									}
 									var thumb;
 									if (entry[t].media$thumbnail !== undefined) {
-										thumb = entry[t].media$thumbnail.url.split(/s72-c/).join(_this.options.imgSize);
+										thumb = entry[t].media$thumbnail.url.split(/s72-c/).join(options.imgSize);
 									} else {
-										thumb = _this.options.defaultThumb;
+										thumb = options.defaultThumb;
 									}
 									
 									result.title = entry[t].title.$t.trim();
@@ -322,15 +320,15 @@ var SGMCore = function(){
 									result.url = urlP;
 									result.id = entry[t].id.$t.split('post-')[1];
 									
-									htmlEmbed += '<div id="'+ result.id +'" class="related-item">' + _this.options.templateHtml.htmlElement.create(result) + '</div>';
+									htmlEmbed += '<div id="'+ result.id +'" class="related-item">' + options.templateHtml.htmlElement.create(result) + '</div>';
 								});
 								
-								$(_this.options.templateHtml.idElement).append(htmlEmbed);
+								$(options.templateHtml.idElement).append(htmlEmbed);
 							}
 						}
 					}
 				}).always(function(){
-					if(num < _this.options.relateSetting.labels.length)
+					if(num < options.relateSetting.labels.length)
 						init(num);
 				})
 			}else{
