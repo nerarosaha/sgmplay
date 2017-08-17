@@ -17,6 +17,7 @@ var IASTriggerExtension = function(options) {
   this.enabled = true;
   this.count = 0;
   this.offset = options.offset;
+	this.elInsert = options.el || null;
   this.$triggerNext = null;
   this.$triggerPrev = null;
 
@@ -35,7 +36,11 @@ var IASTriggerExtension = function(options) {
     var $trigger = this.$triggerNext || (this.$triggerNext = this.createTrigger(this.next, this.html));
     var $lastItem = this.ias.getLastItem();
 
-    $lastItem.after($trigger);
+	if(this.elInsert == null)
+		$lastItem.after($trigger);
+	else
+		this.elInsert.html($trigger);
+	
     $trigger.fadeIn();
 
     return false;
