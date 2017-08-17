@@ -35,7 +35,7 @@ var SGMCore = function(options){
 			maxInLabel : 2,
 			max : 6,
 			mainLabel : []
-		},
+		}
 	};	
 	
 	options = $.extend({}, defaults, options);
