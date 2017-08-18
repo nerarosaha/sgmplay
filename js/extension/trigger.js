@@ -130,6 +130,8 @@ IASTriggerExtension.prototype.next = function() {
 	
   if (this.$triggerNext) {
     this.$triggerNext.remove();
+	if(this.elInsert != null)
+		this.elInsert.off('click');
     this.$triggerNext = null;	
   }
 
