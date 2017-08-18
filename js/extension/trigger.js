@@ -80,7 +80,10 @@ var IASTriggerExtension = function(options) {
     $trigger = jQuery(html).attr('id', 'ias_trigger_' + uid);
 
     $trigger.hide();
-    $trigger.on('click', jQuery.proxy(clickCallback, this));
+	if(this.elInsert == null)
+		$trigger.on('click', jQuery.proxy(clickCallback, this));
+	else
+		this.elInsert.on('click', $trigger, jQuery.proxy(clickCallback, this));
 	
     return $trigger;
   };
