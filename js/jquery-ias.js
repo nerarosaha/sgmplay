@@ -557,7 +557,7 @@
       self.load(url, function(data, items) {
         self.render(items, function() {
           self.nextUrl = self.getNextUrl(data);
-
+			console.log(data);
           self.resume();
         });
       });
