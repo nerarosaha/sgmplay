@@ -14,6 +14,7 @@ var IASNoneLeftExtension = function(options) {
   this.ias = null;
   this.uid = (new Date()).getTime();
   this.html = (options.html).replace('{text}', options.text);
+  this.elInsert = options.el || null;
 
   /**
    * Shows none left message
@@ -21,8 +22,11 @@ var IASNoneLeftExtension = function(options) {
   this.showNoneLeft = function() {
     var $element = jQuery(this.html).attr('id', 'ias_noneleft_' + this.uid),
         $lastItem = this.ias.getLastItem();
-
-    $lastItem.after($element);
+	
+	if(this.elInsert == null)
+		$lastItem.after($element);
+	else
+		this.elInsert.html($trigger);
     $element.fadeIn();
   };
 
