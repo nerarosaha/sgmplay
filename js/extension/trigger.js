@@ -128,6 +128,7 @@ IASTriggerExtension.prototype.next = function() {
   if (this.$triggerNext) {
     this.$triggerNext.remove();
     this.$triggerNext = null;
+	console.log('aaaa');
   }
 
   this.ias.next();
