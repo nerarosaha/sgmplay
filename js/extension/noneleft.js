@@ -26,7 +26,7 @@ var IASNoneLeftExtension = function(options) {
 	if(this.elInsert == null)
 		$lastItem.after($element);
 	else
-		this.elInsert.html($trigger);
+		this.elInsert.html($element);
     $element.fadeIn();
   };
 

@@ -15,6 +15,7 @@ var IASSpinnerExtension = function(options) {
   this.uid = new Date().getTime();
   this.src = options.src;
   this.html = (options.html).replace('{src}', this.src);
+  this.elInsert = options.el || null;
 
   /**
    * Shows spinner
@@ -23,7 +24,10 @@ var IASSpinnerExtension = function(options) {
     var $spinner = this.getSpinner() || this.createSpinner(),
         $lastItem = this.ias.getLastItem();
 
-    $lastItem.after($spinner);
+	if(this.elInsert == null)
+		$lastItem.after($spinner);
+	else
+		this.elInsert.html($spinner);
     $spinner.fadeIn();
   };
 
