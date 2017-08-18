@@ -96,7 +96,7 @@ IASTriggerExtension.prototype.bind = function(ias) {
   var self = this;
 
   this.ias = ias;
-
+	console.log(ias);
   ias.on('next', jQuery.proxy(this.showTriggerNext, this), this.priority);
   ias.on('rendered', jQuery.proxy(this.onRendered, this), this.priority);
 
