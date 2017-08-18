@@ -81,7 +81,7 @@ var IASTriggerExtension = function(options) {
 
     $trigger.hide();
     $trigger.on('click', jQuery.proxy(clickCallback, this));
-
+	console.log($trigger);
     return $trigger;
   };
 
