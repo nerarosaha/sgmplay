@@ -124,11 +124,10 @@ IASTriggerExtension.prototype.unbind = function(ias) {
 IASTriggerExtension.prototype.next = function() {
   this.enabled = false;
   this.ias.pause();
-
+	console.log('aaaa');
   if (this.$triggerNext) {
     this.$triggerNext.remove();
-    this.$triggerNext = null;
-	console.log('aaaa');
+    this.$triggerNext = null;	
   }
 
   this.ias.next();
