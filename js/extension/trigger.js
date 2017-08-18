@@ -81,7 +81,7 @@ var IASTriggerExtension = function(options) {
 
     $trigger.hide();
     $trigger.on('click', jQuery.proxy(clickCallback, this));
-	console.log($trigger);
+	
     return $trigger;
   };
 
@@ -124,7 +124,7 @@ IASTriggerExtension.prototype.unbind = function(ias) {
 IASTriggerExtension.prototype.next = function() {
   this.enabled = false;
   this.ias.pause();
-	console.log('1');
+	
   if (this.$triggerNext) {
     this.$triggerNext.remove();
     this.$triggerNext = null;	
