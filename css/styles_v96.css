@@ -5672,8 +5672,8 @@ input[type='radio'].css-checkbox:checked + label.css-label {
 
 .footer .footerpadding {
     margin: 0px auto;
-	width: 1200px;
-	min-width: 1200px;
+	width: 100%;
+	max-width: 1200px;
 	overflow: hidden;
 }
 
