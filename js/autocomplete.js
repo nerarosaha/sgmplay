@@ -111,106 +111,107 @@ var padding = 4;
 										var nextLink = '';
 										var entry = data.feed.entry,
 											globalLink = data.feed.link;
-										
-										for(var i = 0; i < globalLink.length; i++){
-											if(globalLink[i].rel == 'next'){
-												nextLink = globalLink[i].href;							
-												
-												nextLink = opts.url + "?" + nextLink.split('?')[1];
-												
-												break;
+										if(entry != undefined){
+											for(var i = 0; i < globalLink.length; i++){
+												if(globalLink[i].rel == 'next'){
+													nextLink = globalLink[i].href;							
+													
+													nextLink = opts.url + "?" + nextLink.split('?')[1];
+													
+													break;
+												}
 											}
-										}
-										
-										var enKey = change_alias(key);
-										var result = '';
-										for (var i = 0, len = entry.length; i < len; i++) {
-											var enTitle = change_alias(entry[i].title.$t);
 											
-											if(enTitle.indexOf(enKey) != -1){
-												var urlPost = '';
-												for (var j = 0; j < entry[i].link.length; j++) {
-													if (entry[i].link[j].rel == "alternate") {
-														urlPost = entry[i].link[j].href;
+											var enKey = change_alias(key);
+											var result = '';
+											for (var i = 0, len = entry.length; i < len; i++) {
+												var enTitle = change_alias(entry[i].title.$t);
+												
+												if(enTitle.indexOf(enKey) != -1){
+													var urlPost = '';
+													for (var j = 0; j < entry[i].link.length; j++) {
+														if (entry[i].link[j].rel == "alternate") {
+															urlPost = entry[i].link[j].href;
+														}
 													}
+													
+													var titlePost = entry[i].title.$t;
+													
+													var thumbPost = '';
+													if ("media$thumbnail" in entry) {
+														thumbPost = entry.media$thumbnail.url.replace(/\/s[0-9]+(\-c)?\//g, "/w100-h50-c/");;
+													} else {													
+														thumbPost = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==";													
+													}
+													
+													result += '<li><a class="avatar" href="'+urlPost+'"><img class="pull-left" alt="" src="'+ thumbPost +'"><div class="pull-left search_film"><p class="search_film_vi">'+ titlePost +'</p><p class="search_film_en">'+ titlePost +'</p></div></a></li>';
 												}
-												
-												var titlePost = entry[i].title.$t;
-												
-												var thumbPost = '';
-												if ("media$thumbnail" in entry) {
-													thumbPost = entry.media$thumbnail.url.replace(/\/s[0-9]+(\-c)?\//g, "/w100-h50-c/");;
-												} else {													
-													thumbPost = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==";													
-												}
-												
-												result += '<li><a class="avatar" href="'+urlPost+'"><img class="pull-left" alt="" src="'+ thumbPost +'"><div class="pull-left search_film"><p class="search_film_vi">'+ titlePost +'</p><p class="search_film_en">'+ titlePost +'</p></div></a></li>';
 											}
-										}
-										
-										if($('.mCSB_container').html() == undefined){
+											
+											if($('.mCSB_container').html() == undefined){
 
-											$(".auto_search ul").html(result);
-										
+												$(".auto_search ul").html(result);
+											
+												$(".auto_search ul").mCustomScrollbar({
+													setHeight: "300px",
+													theme: "s-event",
+													mouseWheel:{ preventDefault: true },
+												});
+											} else{
+												$(".auto_search .mCSB_container").html(result);
+
+												$(".auto_search ul").mCustomScrollbar("update");
+											}
+
+											$(".auto_search").show();
+											
 											$(".auto_search ul").mCustomScrollbar({
 												setHeight: "300px",
 												theme: "s-event",
 												mouseWheel:{ preventDefault: true },
 											});
-										} else{
-											$(".auto_search .mCSB_container").html(result);
 
-											$(".auto_search ul").mCustomScrollbar("update");
-										}
+											$("body").on('click', function(e) {
+												$(".auto_search").hide();
+												position = 1;
+												height_li_current = 0;
+												height_scroll = 0;
+												total_height = 0;
+												obj.val('');
+											});
 
-										$(".auto_search").show();
-										
-										$(".auto_search ul").mCustomScrollbar({
-											setHeight: "300px",
-											theme: "s-event",
-											mouseWheel:{ preventDefault: true },
-										});
+											$(".auto_search ul").css({
+												'max-height': opts.maxheight,
+												'overflow': 'auto'
+											});										
 
-										$("body").on('click', function(e) {
-											$(".auto_search").hide();
-											position = 1;
-											height_li_current = 0;
-											height_scroll = 0;
-											total_height = 0;
-											obj.val('');
-										});
+											// Bắt sự kiện khi click chuột vào vùng hiện kết quả search
+											$(".auto_search li").click(function() {
+												if (opts.tags == true) {
+													var value = $(this).find(".show_input").html();
+													obj.val("");
+													var tag = '<span id="' + $(this).attr("id") + '" class="tag"><span>' + value + '&nbsp;</span><a href="javascript:void(0)" class="remove_tag" title="Removing tag">x</a></span>';
+													$(".all_tag").append(tag);
 
-										$(".auto_search ul").css({
-											'max-height': opts.maxheight,
-											'overflow': 'auto'
-										});										
-
-										// Bắt sự kiện khi click chuột vào vùng hiện kết quả search
-										$(".auto_search li").click(function() {
-											if (opts.tags == true) {
-												var value = $(this).find(".show_input").html();
-												obj.val("");
-												var tag = '<span id="' + $(this).attr("id") + '" class="tag"><span>' + value + '&nbsp;</span><a href="javascript:void(0)" class="remove_tag" title="Removing tag">x</a></span>';
-												$(".all_tag").append(tag);
-
-												$(".remove_tag").click(function() {
-													$(this).parent().remove();
-												});
-											} else {
-												var value = $(this).find(".show_input").html();
-												if (opts.resultfield == null) {
-													obj.val(value);
+													$(".remove_tag").click(function() {
+														$(this).parent().remove();
+													});
 												} else {
-													value = $(opts.resultfield).val() + value;
-													$(opts.resultfield).val(value);
+													var value = $(this).find(".show_input").html();
+													if (opts.resultfield == null) {
+														obj.val(value);
+													} else {
+														value = $(opts.resultfield).val() + value;
+														$(opts.resultfield).val(value);
+													}
 												}
-											}
-											$(".auto_search").hide();
-										})
+												$(".auto_search").hide();
+											})
 
-										$(".auto_search ul li").each(function(i, item) {
-											total_height += $(this).height() + padding;
-										})
+											$(".auto_search ul li").each(function(i, item) {
+												total_height += $(this).height() + padding;
+											})
+										}
 									}
 								})
 							})();
