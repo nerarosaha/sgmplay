@@ -137,7 +137,7 @@ body {
 .slider-film .slick-arrow {
   width: 25px;
   height: 68px;
-  background: url(../img/vip_region/arrow-slider.png);
+  background: url(https://lh3.googleusercontent.com/-LROIu5VR2dI/WZp315lcLuI/AAAAAAAADw8/Hz5f8Gw4guMm3ih7z7-6I5cAYJmL-eM2ACKgBGAs/s1600/arrow-slider.png);
   text-indent: -100000px;
   border: none;
   position: absolute;
@@ -267,7 +267,7 @@ body {
   text-align: center;
   width: 300px;
   height: 95px;
-  background: url(../img/vip_region/take-me-out.jpg) no-repeat;
+  background: url(https://lh3.googleusercontent.com/--HyjvTFCf2A/WZp4BnQj6UI/AAAAAAAADxI/encAlUpP9mknaC8WnaafO0Fa0RQopDujwCKgBGAs/s1600/take-me-out.jpg) no-repeat;
   display: table;
   text-transform: capitalize;
 }
@@ -330,7 +330,7 @@ body {
   right: 0;
   width: 17px;
   height: 9px;
-  background: url(../img/vip_region/view-more.png) no-repeat;
+  background: url(https://lh3.googleusercontent.com/-xAbQx662ijE/WZp4MgygI-I/AAAAAAAADxU/gLaIjJGNe34IIcOkmzIaO9cL08HhEM_AQCKgBGAs/s1600/view-more.png) no-repeat;
 }
 
 .block-hl .view-more:hover {
@@ -360,7 +360,7 @@ body {
 #slider-hl .slick-dots li button {
   width: 20px;
   height: 2px;
-  background: url(../img/vip_region/dot.png);
+  background: url(https://lh4.googleusercontent.com/-hStIjvNfcWI/WZp4a5X44GI/AAAAAAAADxg/6iPsYXVjsyUS3JTRM1ISs4j9q3aXJcXnwCKgBGAs/s1600/dot.png);
   text-indent: -10000px;
   float: left;
   display: inline-block;
@@ -383,7 +383,7 @@ body {
 }
 
 #slider-hl .slick-prev {
-  background: url(../img/vip_region/btn-prev.png);
+  background: url(https://lh3.googleusercontent.com/-0sCkvXLlnHI/WZp40zrC6XI/AAAAAAAADxw/ojgC2kVgWnU0HdTjroC-dOHpAnnpwYIPwCKgBGAs/s1600/btn-prev.png);
   left: 17px;
   z-index: 1000;
   top: 50%;
@@ -391,11 +391,11 @@ body {
 }
 
 #slider-hl .slick-prev:hover {
-  background: url(../img/vip_region/btn-prev-active.png);
+  background: url(https://lh4.googleusercontent.com/-ZLdnlc-uULk/WZp40-qTYjI/AAAAAAAADxw/v4YRXsCmZJAYxocLoQZ-NufLBEbftXbOACKgBGAs/s1600/btn-prev-active.png);
 }
 
 #slider-hl .slick-next {
-  background: url(../img/vip_region/btn-next.png);
+  background: url(https://lh4.googleusercontent.com/-wHFPUluc24U/WZp40zqLi5I/AAAAAAAADxw/HAY_KOSax9MQr4HTecQ6Wb9xq5Kfuo18wCKgBGAs/s1600/btn-next.png);
   right: 16px;
   z-index: 1000;
   top: 50%;
@@ -403,7 +403,7 @@ body {
 }
 
 #slider-hl .slick-next:hover {
-  background: url(../img/vip_region/btn-next-active.png);
+  background: url(https://lh4.googleusercontent.com/-ySd1Wk4JFck/WZp40zV_iEI/AAAAAAAADxw/3Zo88lValE004_Cl_6oQzOwK86ooQZfGwCKgBGAs/s1600/btn-next-active.png);
 }
 
 .section-content .section-left {
@@ -516,7 +516,7 @@ body {
   width: 12px;
   height: 8px;
   border: none;
-  background: url(../img/vip_region/arrow-down.png) no-repeat;
+  background: url(https://lh3.googleusercontent.com/-LV7xjroRCqE/WZp5TUOxpuI/AAAAAAAADyA/lqrWo8OwDNMi14uPJJ4IrtOa3YhxEWaOQCKgBGAs/s1600/arrow-down.png) no-repeat;
   top: 5px;
 }
 
@@ -767,7 +767,7 @@ body {
 .list-page li:first-child a:after {
   content: '';
   position: absolute;
-  background: url(../img/vip_region/arrow-left.png) no-repeat;
+  background: url(https://lh3.googleusercontent.com/-n94WGkae54c/WZp5TZbEHGI/AAAAAAAADyA/n_urBExssZknX_SRH7VJw4PwW-YZRublQCKgBGAs/s1600/arrow-left.png) no-repeat;
   width: 9px;
   height: 15px;
   top: 7px;
@@ -777,7 +777,7 @@ body {
 .list-page li:last-child a:after {
   content: '';
   position: absolute;
-  background: url(../img/vip_region/arrow-right.png) no-repeat;
+  background: url(https://lh3.googleusercontent.com/-4pwP4Qq0v2c/WZp5TfEpFaI/AAAAAAAADyA/dtaja06J0kw7s-D8_g-aHZlSCwODycPKgCKgBGAs/s1600/arrow-right.png) no-repeat;
   width: 9px;
   height: 15px;
   top: 7px;
@@ -968,7 +968,7 @@ body {
   top: 5px;
   width: 12px;
   height: 13px;
-  background: url(../img/vip_region/icon-suggest.png) no-repeat;
+  background: url(https://lh4.googleusercontent.com/-C_NZZzYkt1o/WZp5vj12HYI/AAAAAAAADyM/QzOlkPMNcno4KajEMIG3_KDIgrGXLDHGgCKgBGAs/s1600/icon-suggest.png) no-repeat;
   background-position: 0 0;
 }
 
