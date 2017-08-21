@@ -183,16 +183,7 @@ var padding = 4;
 										$(".auto_search ul").css({
 											'max-height': opts.maxheight,
 											'overflow': 'auto'
-										});
-
-										// Bắt sự kiện khi rê chuột vào vùng hiện kết quả search
-										// $(".auto_search li").mouseover(function() {
-										//     $(".auto_search li").removeClass("auto_over");
-										//     var id = $(this).attr("id");
-										//     $(this).addClass("auto_over");
-										// }).mouseout(function() {
-										//     $(this).removeClass("auto_over");
-										// })
+										});										
 
 										// Bắt sự kiện khi click chuột vào vùng hiện kết quả search
 										$(".auto_search li").click(function() {
