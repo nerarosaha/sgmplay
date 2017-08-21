@@ -156,6 +156,10 @@ var padding = 4;
 												
 											}
 											
+											if(count < 10){
+												
+											}
+											
 											if($('.mCSB_container').html() == undefined){
 
 												$(".auto_search ul").html(result);
