@@ -143,7 +143,7 @@ var padding = 4;
 														var titlePost = entry[i].title.$t;
 														
 														var thumbPost = '';
-														if ("media$thumbnail" in entry) {
+														if ("media$thumbnail" in entry[i]) {
 															thumbPost = entry[i].media$thumbnail.url.replace(/\/s[0-9]+(\-c)?\//g, "/w100-h50-c/");;
 														} else {													
 															thumbPost = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==";													
