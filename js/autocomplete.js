@@ -98,6 +98,7 @@ var padding = 4;
 							
                             (function searchData(url){
 								if(url === undefined) url = opts.url;
+								console.log(url);
 								$.ajax({
 									type: opts.method,
 									url: url,
