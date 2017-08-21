@@ -98,7 +98,7 @@ var padding = 4;
 							
                             function searchData(url){
 								if(url === undefined) url = opts.url;
-								console.log(url);
+								
 								$.ajax({
 									type: opts.method,
 									url: url,
@@ -125,28 +125,35 @@ var padding = 4;
 											
 											var enKey = change_alias(key);
 											var result = '';
+											var count = 1;
 											for (var i = 0, len = entry.length; i < len; i++) {
 												var enTitle = change_alias(entry[i].title.$t);
 												
-												if(enTitle.indexOf(enKey) != -1){
-													var urlPost = '';
-													for (var j = 0; j < entry[i].link.length; j++) {
-														if (entry[i].link[j].rel == "alternate") {
-															urlPost = entry[i].link[j].href;
+												if(enTitle.indexOf(enKey) == -1){
+													continue;
+												}else{
+													if(count <= 10){
+														var urlPost = '';
+														for (var j = 0; j < entry[i].link.length; j++) {
+															if (entry[i].link[j].rel == "alternate") {
+																urlPost = entry[i].link[j].href;
+															}
 														}
+														
+														var titlePost = entry[i].title.$t;
+														
+														var thumbPost = '';
+														if ("media$thumbnail" in entry) {
+															thumbPost = entry[i].media$thumbnail.url.replace(/\/s[0-9]+(\-c)?\//g, "/w100-h50-c/");;
+														} else {													
+															thumbPost = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==";													
+														}
+														
+														result += '<li><a class="avatar" href="'+urlPost+'"><img class="pull-left" alt="" src="'+ thumbPost +'"><div class="pull-left search_film"><p class="search_film_vi">'+ titlePost +'</p><p class="search_film_en">'+ titlePost +'</p></div></a></li>';
 													}
-													
-													var titlePost = entry[i].title.$t;
-													
-													var thumbPost = '';
-													if ("media$thumbnail" in entry) {
-														thumbPost = entry.media$thumbnail.url.replace(/\/s[0-9]+(\-c)?\//g, "/w100-h50-c/");;
-													} else {													
-														thumbPost = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAA1BMVEXMzMzKUkQnAAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==";													
-													}
-													
-													result += '<li><a class="avatar" href="'+urlPost+'"><img class="pull-left" alt="" src="'+ thumbPost +'"><div class="pull-left search_film"><p class="search_film_vi">'+ titlePost +'</p><p class="search_film_en">'+ titlePost +'</p></div></a></li>';
+													count++;
 												}
+												
 											}
 											
 											if($('.mCSB_container').html() == undefined){
