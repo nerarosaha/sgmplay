@@ -741,11 +741,7 @@ strong{
 .wrap_button_menu{
     float: right;
 }
-@media (max-width: 1040px) {
-    .fix_padding{
-        padding: 0 2%!important;
-    }
-}
+
 /*begin info dang */
 @media (max-width: 1200px) {
     .slide_info{
@@ -4738,9 +4734,6 @@ input[type='radio'].css-checkbox:checked + label.css-label {
         display: none;
     }
 
-    .fix_padding_slider{
-        padding: 0 2%!important;
-    }
     .fix_slider{
         margin: 0 -1%;
     }
