@@ -3730,7 +3730,7 @@ input[type='radio'].css-checkbox:checked + label.css-label {
 /* Category detail*/
 .category_detail_title {
     background: #1c1c1c none repeat scroll 0 0;
-    margin-top: 11%;
+    margin-top: 10px;
 }
 
 .category_detail_title .category_dropdown {
