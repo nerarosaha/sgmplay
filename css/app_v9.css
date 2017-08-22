@@ -1,39 +1,4 @@
-
-
 /* Slider */
-
-.slider .bx-controls-direction{
-	position: absolute;
-	opacity: 0.1;
-	outline: 0;
-	width: 40px;
-	height: 60px;
-	z-index: 15;
-	top: 42%;
-	background:#000;
-}
-.slider .bx-controls-direction:hover{
-	opacity: 0.6;
-	
-}
-@media (min-width:1900px) { 
-	
-}
-
-@media (max-width: 1224px){
-	
-}
-
-@media (max-width: 980px){
-	
-}
-
-.slider .bx-controls-direction img{
-	top: 26%;
-    margin-left: 30%;
-    position: absolute;
-	width: 45%;
-}
 
 .slider .bx-next {
     right: -40px;
@@ -43,9 +8,6 @@
 .slider .bx-prev {
     left: -40px;
 	border-radius: 8px 0px 0px 8px;
-}
-@media (min-width:1900px) { 
-	
 }
 
 
@@ -58,7 +20,6 @@
 
 
 /*** Modal Dangky ****/
-
 .modal1{
 	position: fixed;
 	top: 96px;

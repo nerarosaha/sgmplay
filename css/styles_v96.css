@@ -4193,13 +4193,7 @@ input[type='radio'].css-checkbox:checked + label.css-label {
     margin-left: 3.571%;
     padding: 35px 0 5px;
 }
-/*Fix bx_loader*/
-.bx-wrapper .bx-next {
-    background: none;
-}
-.bx-wrapper .bx-prev {
-    background: none;
-}
+
 /*Player quality*/
 .quality {
     float: right;
